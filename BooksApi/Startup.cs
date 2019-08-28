@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BooksApi.Models;
+using BooksApi.Models.UsersModel;
 using BooksApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,7 +35,14 @@ namespace BooksApi
             services.AddSingleton<IBookstoreDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<BookstoreDatabaseSettings>>().Value);
 
+            services.Configure<UserstoreDatabaseSettings>(
+                Configuration.GetSection(nameof(UserstoreDatabaseSettings)));
+
+            services.AddSingleton<IUserstoreDatabaseSettings>(sp =>
+                sp.GetRequiredService<IOptions<UserstoreDatabaseSettings>>().Value);
+
             services.AddSingleton<BookService>();
+            services.AddSingleton<UserService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -85,7 +93,7 @@ namespace BooksApi
                 c.RoutePrefix = string.Empty;
             });
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
