@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using BooksApi.Models;
 using BooksApi.Models.UsersModel;
 using MongoDB.Driver;
 
@@ -10,12 +11,12 @@ namespace BooksApi.Services
 
         private readonly IMongoCollection<User> _users;
 
-        public UserService(IUserstoreDatabaseSettings settings)
+        public UserService(IBookstoreDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
 
-            _users = database.GetCollection<User>(settings.UsersCollectionName);
+            _users = database.GetCollection<User>("Users");
         }
 
         public List<User> Get() =>

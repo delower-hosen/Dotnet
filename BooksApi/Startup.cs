@@ -35,12 +35,6 @@ namespace BooksApi
             services.AddSingleton<IBookstoreDatabaseSettings>(sp =>
                 sp.GetRequiredService<IOptions<BookstoreDatabaseSettings>>().Value);
 
-            services.Configure<UserstoreDatabaseSettings>(
-                Configuration.GetSection(nameof(UserstoreDatabaseSettings)));
-
-            services.AddSingleton<IUserstoreDatabaseSettings>(sp =>
-                sp.GetRequiredService<IOptions<UserstoreDatabaseSettings>>().Value);
-
             services.AddSingleton<BookService>();
             services.AddSingleton<UserService>();
 
