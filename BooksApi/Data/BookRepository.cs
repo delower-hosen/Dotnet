@@ -17,10 +17,9 @@ namespace BooksApi.Data {
             throw new System.NotImplementedException ();
         }
 
-        public Task<List<Book>> Get () {
-            throw new System.NotImplementedException ();
-            // List<Book> Books = await _books.FindAsync(book => true).ToListAsync();
-            // return Books;
+        public async Task<List<Book>> Get () {
+            List<Book> books = await _books.Find(books => true).ToListAsync();
+            return books;
         }
 
         public Task<Book> Get (string id) {
