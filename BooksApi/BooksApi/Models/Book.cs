@@ -1,15 +1,21 @@
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BooksApi.Models
 {
-    public class Book 
+    public class Book
     {
-        [BsonId] //to designate this property as document's primary key
-        [BsonRepresentation(BsonType.ObjectId)] //to pass parameter as type string instead of ObjectId
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
 
-        [BsonElement("Name")]  //property name in  mongodb
+        [BsonElement("Name")]
+        [JsonProperty("Name")]
         public string BookName { get; set; }
 
         public decimal Price { get; set; }
