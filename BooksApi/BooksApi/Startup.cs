@@ -37,6 +37,8 @@ namespace BooksApi
 
             services.AddScoped<IBookRepository, BookRepository>();
 
+            services.AddScoped<IAuthRepository, AuthRepository>();
+
             services.AddControllers()
                 .AddNewtonsoftJson(options => options.UseMemberCasing());
         }
